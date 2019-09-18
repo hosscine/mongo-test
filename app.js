@@ -12,7 +12,7 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// Get collection
+// Get connection
 let collection
 const connectOption = {
   useNewUrlParser: true,
@@ -28,6 +28,7 @@ MongoClient.connect(url, connectOption, (err, client) => {
   app.listen(3000, () => console.log('server starts listening 3000'))
 })
 
+// Routing
 app.get('/laxury/latest', (req, res) => {
   const option = { $group: { _id: '', last: { $max: "$_id" } } }
   collection.aggregate(option).toArray()
