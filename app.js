@@ -29,9 +29,9 @@ MongoClient.connect(url, connectOption, (err, client) => {
 })
 
 // Routing
-app.get('/laxury/latest', (req, res) => {
-  const option = { $group: { _id: '', last: { $max: "$_id" } } }
-  collection.aggregate(option).toArray()
+app.get('/laxury/latest', async (req, res) => {
+  const count = await collection.countDocuments() - 1
+  collection.find().skip(count).toArray()
     .then(bill => res.send(bill))
     .catch(err => {
       console.log(err)
@@ -40,7 +40,7 @@ app.get('/laxury/latest', (req, res) => {
 })
 
 app.get('/laxury/all', (req, res) => {
-  collection.find({}).toArray()
+  collection.find().toArray()
     .then(bill => res.send(bill))
     .catch(err => {
       console.log(err)
