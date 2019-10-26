@@ -3,7 +3,7 @@ const assert = require('assert')
 const express = require("express")
 
 // Connection URL, DB, collection
-const url = 'mongodb://api:hoge22@localhost:27017/?authMechanism=SCRAM-SHA-1&authSource=laxury'
+const url = 'mongodb://api:hoge22@mongo:27017/?authMechanism=SCRAM-SHA-1&authSource=laxury'
 const dbName = 'laxury'
 const collectionName = "bill"
 
